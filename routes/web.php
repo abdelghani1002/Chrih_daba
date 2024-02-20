@@ -18,7 +18,7 @@ use App\Http\Controllers\CartController;
 */
 
 Route::get('/', [SiteController::class,"index"] );
-Route::get('/login', [SiteController::class,"login"] );
+Route::get('/login', [SiteController::class,"login"] )->name("login");
 Route::get('/register', [SiteController::class,"register"] );
 Route::get('/product/{product}', [SiteController::class,"singlePage"] )->name('product.show');
 

@@ -1,4 +1,4 @@
-d<x-app-layout  title="Login">
+<x-app-layout title="Login">
 <div class="flex h-screen items-center justify-center p-10">
     <div class="xl:w-1/2  rounded-2xl border border-blue-800 md:shadow-xl">
       <div class="grid md:grid-cols-2 p-5">
@@ -12,7 +12,7 @@ d<x-app-layout  title="Login">
             <br />
             <input name="email" type="email" class="mb-3 w-full rounded-2xl bg-zinc-100 outline-rose-400 px-5 py-3" placeholder="email" />
              <input  name="password" type="password" class="mb-3 w-full rounded-2xl bg-zinc-100 outline-rose-400 px-5 py-3" placeholder="password" />
-      
+
              <button type="submit" class="mb-3 w-full rounded-2xl bg-rose-500 px-5 py-3 font-semibold text-white">Login</button>
           </form>
         </div>
@@ -20,4 +20,3 @@ d<x-app-layout  title="Login">
     </div>
   </div>
 </x-app-layout>
-  
