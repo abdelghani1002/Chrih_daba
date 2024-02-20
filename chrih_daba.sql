@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 20, 2024 at 04:31 PM
+-- Generation Time: Feb 20, 2024 at 09:07 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `chrih_daba`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carts`
+--
+
+CREATE TABLE `carts` (
+  `user_id` bigint NOT NULL,
+  `product_id` bigint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`user_id`, `product_id`) VALUES
+(1, 6),
+(1, 7);
 
 -- --------------------------------------------------------
 
@@ -113,7 +132,9 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (46, 8, 'order_hasmany_product_relationship', 'relationship', 'products', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Product\",\"table\":\"products\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"order_product\",\"pivot\":\"1\",\"taggable\":\"on\"}', 8),
 (47, 6, 'product_belongstomany_order_relationship', 'relationship', 'orders', 0, 0, 0, 0, 0, 0, '{\"model\":\"App\\\\Order\",\"table\":\"orders\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"id\",\"pivot_table\":\"order_product\",\"pivot\":\"1\",\"taggable\":\"on\"}', 11),
 (48, 8, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 5),
-(49, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 1, 1, 1, 1, 1, '{}', 6);
+(49, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 1, 1, 1, 1, 1, '{}', 6),
+(50, 1, 'user_belongstomany_product_relationship', 'relationship', 'products', 0, 0, 0, 0, 0, 1, '{\"model\":\"App\\\\Product\",\"table\":\"products\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"carts\",\"pivot\":\"1\",\"taggable\":\"on\"}', 13),
+(51, 6, 'product_belongstomany_user_relationship_1', 'relationship', 'users', 0, 0, 0, 0, 0, 1, '{\"model\":\"App\\\\Models\\\\User\",\"table\":\"users\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"carts\",\"pivot\":\"1\",\"taggable\":\"on\"}', 12);
 
 -- --------------------------------------------------------
 
@@ -144,11 +165,11 @@ CREATE TABLE `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2024-02-19 23:12:38', '2024-02-20 10:02:39'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2024-02-19 23:12:38', '2024-02-20 17:35:34'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2024-02-19 23:12:38', '2024-02-19 23:12:38'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2024-02-19 23:12:38', '2024-02-19 23:12:38'),
 (5, 'categories', 'categories', 'Category', 'Categories', NULL, 'App\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2024-02-19 23:20:03', '2024-02-19 23:28:27'),
-(6, 'products', 'products', 'Product', 'Products', NULL, 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2024-02-19 23:24:08', '2024-02-20 13:47:06'),
+(6, 'products', 'products', 'Product', 'Products', NULL, 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2024-02-19 23:24:08', '2024-02-20 17:36:00'),
 (8, 'orders', 'orders', 'Order', 'Orders', NULL, 'App\\Order', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2024-02-20 09:18:33', '2024-02-20 09:59:00');
 
 -- --------------------------------------------------------
@@ -283,14 +304,6 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `status`, `created_at`, `updated_at`, `user_id`) VALUES
-(2, 'cart', '2024-02-20 09:59:45', '2024-02-20 09:59:45', 1),
-(3, 'chart', '2024-02-20 13:43:43', '2024-02-20 13:43:43', 1);
 
 -- --------------------------------------------------------
 
@@ -485,8 +498,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `category_id`, `price`, `created_at`, `updated_at`) VALUES
-(4, 'produict1', 'sdfghjklm\r\ndfghjklm', 'products\\February2024\\6A0RThoEETbGWuIX2CPT.jpg', 2, 250.05, '2024-02-20 09:37:00', '2024-02-20 13:47:57'),
-(5, 'product2', 'mljhgfcv kjbvjghb\r\nlkhjgvkjb', 'products\\February2024\\IQA72cvJ7azebESorBWY.jpg', 2, 0, '2024-02-20 09:37:58', '2024-02-20 09:37:58');
+(6, 'Samson Glover', 'Consequuntur omnis s', 'products\\February2024\\fKtcfGUnUmnTBnabdbHO.webp', 2, 27.7, '2024-02-20 17:42:15', '2024-02-20 17:42:15'),
+(7, 'Grady Kerr', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed\r\n                            sed ante justo. Integer euismod libero id mauris malesuada tincidunt. Vivamus commodo nulla ut\r\n                            lorem rhoncus aliquet. Duis dapibus augue vel ipsum pretium, et venenatis sem blandit. Quisque\r\n                            ut erat vitae nisi ultrices placerat non eget velit. Integer ornare mi sed ipsum lacinia, non\r\n                            sagittis mauris blandit. Morbi fermentum libero vel nisl suscipit, nec tincidunt mi consectetur.', 'products\\February2024\\WNNAey9df5NqFRdxpG3W.webp', 1, 72, '2024-02-20 18:27:00', '2024-02-20 18:52:38');
 
 -- --------------------------------------------------------
 
@@ -593,9 +606,7 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified
 (6, 2, 'Naomi Knight', 'xakyny@mailinator.com', 'users/default.png', NULL, '$2y$12$bllFNA5Kft4wvCfY5aiy7e001uiDBLcT3eBz76YluCSMTYpIcSPSu', NULL, NULL, '2024-02-20 08:16:02', '2024-02-20 08:16:02'),
 (7, 2, 'Amir Santos', 'pudituxe@mailinator.com', 'users/default.png', NULL, '$2y$12$RyTsu.StbzE1rXyWR.QDPuSCGcyYK7Q.jCzTl41GDuiJj41U.S18m', NULL, NULL, '2024-02-20 08:16:23', '2024-02-20 08:16:23'),
 (8, 2, 'Cathleen Burris', 'lusybuli@mailinator.com', 'users/default.png', NULL, '$2y$12$a8s5.ZM0g9brdPj9OYhit.6hcmXJz1gAYXtp/41sZ4If0n5A6qycG', NULL, NULL, '2024-02-20 08:17:16', '2024-02-20 08:17:16'),
-(9, 2, 'Daquan Mcintosh', 'sysexig@mailinator.com', 'users/default.png', NULL, '$2y$12$/CC9OqpGF6yv6Wm4fkY1m.8qDu2fYaMKWK7HI.Cj7K9bM0fpGRxvq', NULL, NULL, '2024-02-20 08:25:55', '2024-02-20 08:25:55'),
-(10, 2, 'abd', 'faqykoda@mailinator.com', 'users/default.png', NULL, '$2y$12$jahsiu2Z8aG/3QnBUBT.ZOvMsQ7wZH5.Yml53QuqCyYQzociK/c9G', NULL, NULL, '2024-02-20 08:26:14', '2024-02-20 08:26:14'),
-(11, 2, 'abdo', 'abdo@abdo.com', 'users/default.png', NULL, '$2y$12$MuVXKHJrioG2SqLnvTAqnuzCcoAFfySBmf7wL8qpeUAOauBCOtOvK', NULL, NULL, '2024-02-20 08:26:52', '2024-02-20 08:26:52');
+(9, 2, 'Daquan Mcintosh', 'sysexig@mailinator.com', 'users/default.png', NULL, '$2y$12$/CC9OqpGF6yv6Wm4fkY1m.8qDu2fYaMKWK7HI.Cj7K9bM0fpGRxvq', NULL, NULL, '2024-02-20 08:25:55', '2024-02-20 08:25:55');
 
 -- --------------------------------------------------------
 
@@ -614,9 +625,7 @@ CREATE TABLE `user_roles` (
 
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 (8, 1),
-(9, 2),
-(10, 2),
-(11, 2);
+(9, 2);
 
 --
 -- Indexes for dumped tables
@@ -762,7 +771,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `data_types`
@@ -816,7 +825,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`
