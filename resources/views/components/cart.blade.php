@@ -13,11 +13,16 @@
                         <h2 class="text-lg font-bold">{{ $item->name }}</h2>
                         <span class="text-gray-600 font-bold">{{ $item->price }} $</span>
                     </div>
+                    <form  method="post" action="{{url("/removeFromCart")}}">
+                        @csrf
+                        @method("DELETE")
+                    <input name="product_id" value="{{$item->id}}" type="hidden">
                     <button class="text-gray-600 hover:text-red-500 px-2">
                         <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                             <path d="M19 13H5v-2h14v2z" />
                         </svg>
                     </button>
+                </form>
                 </div>
             @endforeach
         </div>

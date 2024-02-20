@@ -12,7 +12,7 @@ class AppLayout extends Component
      *
      * @return void
      */
-    public function __construct( public string $title, public Collection $cart)
+    public function __construct( public string $title)
     {
         //
 
@@ -25,6 +25,6 @@ class AppLayout extends Component
      */
     public function render()
     {
-        return view('layouts.app-layout', ['cart' => $this->cart]);
+        return view('layouts.app-layout');
     }
 }

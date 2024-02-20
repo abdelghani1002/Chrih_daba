@@ -1,4 +1,4 @@
-<x-app-layout title="CHRIH.DABA" :cart="$cart">
+<x-app-layout title="CHRIH.DABA">
     <x-hero-section />
     <div class="my-2 lg:mx-24 mx-2">
         <x-search />

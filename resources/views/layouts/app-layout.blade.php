@@ -18,7 +18,7 @@
 
         @auth
             <div id="cart" class="hidden z-50 top-24 right-0 lg:pr-24 pr-2 ">
-                <x-cart :cart="$cart" />
+                <x-cart   />
             </div>
         @endauth
 

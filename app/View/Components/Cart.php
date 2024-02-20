@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
@@ -15,6 +16,7 @@ class Cart extends Component
      */
     public function __construct( public Collection $cart)
     {
+
     }
 
     /**
@@ -24,6 +26,13 @@ class Cart extends Component
      */
     public function render()
     {
+        $this->cart = new Collection;
+        if (auth()->check()) {
+            $user = User::find(auth()->user()->id);
+            if ($user->products) {
+                $this->cart = $user->products;
+            }
+        }
         $amount = 0;
         foreach ($this->cart as $pro) {
             $amount += $pro->price;

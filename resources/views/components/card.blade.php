@@ -6,20 +6,18 @@
     </div>
     <div class="p-4">
         <h3 class="text-lg font-medium mb-2">{{ $product->name }}</h3>
-        <p class="text-gray-600 text-sm mb-4">{{ $product->description }}</p>
+        <p class="text-gray-600 text-sm mb-4">{{ Str::limit($product->description, 80, '...')  }}</p>
         <span class="text-lg font-medium mb-2 bg-red-200 py-1 px-2 rounded-md ">{{ $product->category->name }}</span>
         <div class="flex items-center mt-4 justify-between">
-            <span class="font-bold text-lg">${{ $product->price }}</span>
-
-            <form method="post" action="{{ url('product/addtocart/' . $product->id) }}">
+            <span class="font-bold text-lg">${{  $product->price }}</span>
+            <a href="{{route("product.show", $product)}}" class="bg-red-100 px-2 py-1 rounded-sm " >show</a>
+            <form method="post" action="{{ url('product/addtocart') }}">
                 @csrf
+                 <input name="product_id" value="{{$product->id}}" type="hidden">
                 <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                     add to cart
                 </button>
-
             </form>
-
-
         </div>
     </div>
 </div>

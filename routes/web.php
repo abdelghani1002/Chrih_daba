@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,17 +20,21 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/', [SiteController::class,"index"] );
 Route::get('/login', [SiteController::class,"login"] );
 Route::get('/register', [SiteController::class,"register"] );
+Route::get('/product/{product}', [SiteController::class,"singlePage"] )->name('product.show');
 
 Route::post('/register', [RegisteredUserController::class,"store"] );
 
 
 Route::middleware("auth")->group(function(){
     Route::post('/logout', [RegisteredUserController::class,"logOut"] );
-    Route::post("product/addtocart/{id}",[SiteController::class,"addtocart"]);
+    Route::post("product/addtocart",[CartController::class,"addProducttoCart"]);
+    Route::delete("/removeFromCart",[CartController::class,"removeFromCart"]);
+
 });
 
 
- 
+
+
 
 
 
