@@ -55,7 +55,11 @@ $(document).ready(function () {
     }
 
     function noResult() {
-        $("#place_result").html("")
+        $("#place_result").html(`
+        <div class="w-full flex justify-center " >
+        <img src="https://cdn.dribbble.com/users/235730/screenshots/2936116/no-resultfound.jpg" alt="">
+    </div>
+        `)
     }
 
     function showProduct(products, token) {
@@ -74,7 +78,7 @@ $(document).ready(function () {
                 <p class="text-gray-600 text-sm mb-4">${description}</p>
                 <span class="text-lg font-medium mb-2 bg-red-200 py-1 px-2 rounded-md ">${ product.category.name }</span>
                 <div class="flex items-center mt-4 justify-between">
-                    <span class="font-bold text-lg">$ ${  product.price }}</span>
+                    <span class="font-bold text-lg">$ ${  product.price }</span>
                     <a href="{{route("product.show", $product)}}" class="bg-red-100 px-2 py-1 rounded-sm " >show</a>
                     <form method="post" action="http://127.0.0.1:8000/product/addtocart">
 

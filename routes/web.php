@@ -33,6 +33,8 @@ Route::middleware("auth")->group(function () {
     Route::post('/logout', [RegisteredUserController::class, "logOut"]);
     Route::post("product/addtocart", [CartController::class, "addProducttoCart"]);
     Route::post("product/addtoFavourite", [SiteController::class, "addProducttoCart"]);
+    Route::post("product/removeFromCart", [SiteController::class, "removeFromCart"]);
+
     Route::delete("/removeFromCart", [CartController::class, "removeFromCart"]);
     Route::post("/checkout", [OrderController::class, "checkout"])->name("checkout");
     Route::get('success', [OrderController::class, 'success'])->name('success');

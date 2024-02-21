@@ -1,4 +1,4 @@
-<x-app-layout title="" >
+<x-app-layout title="{{auth()->user()->name}}" >
     <div
     class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
     <div class="rounded-t-lg h-32 overflow-hidden">
@@ -39,5 +39,13 @@
     </div>
 </div>
 
-<div class="px-10"></div>
+<div class="px-10">
+    <div class="text-center pt-24 " >
+        <h3 class="text-3xl font-bold" >Favourite Production</h3>
+    </div>
+    <div id="place_result" class="flex flex-wrap lg:px-32 px-8 gap-2 lg:justify-start md:justify-center pb-10 pt-2 justify-center w-full">
+    @foreach ($favProduct as $product)
+        <x-card :product="$product" />
+    @endforeach
+</div></div>
 </x-app-layout>

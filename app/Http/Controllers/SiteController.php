@@ -46,7 +46,9 @@ class SiteController extends Controller
 
     function myProfil()
     {
-        return view("profile");
+        $favProduct = User::find(auth()->id());
+        $favProduct = $favProduct->favouriteProducts;
+        return view("profile",compact("favProduct"));
     }
 
     function addProducttoCart(Request $request){
@@ -54,10 +56,16 @@ class SiteController extends Controller
         $productId = $request->input('product_id');
 
 
-        if (!$user->products->contains($productId)) {
+        if (!$user->favouriteProducts->contains($productId)) {
             $user->favouriteProducts()->syncWithoutDetaching([$productId]);
         }
 
+        return Redirect::back();
+    }
+    function removeFromCart(Request $request){
+        $user = Auth::user();
+        $productId = $request->input('product_id');
+        $user->favouriteProducts()->detach([$productId]);
         return Redirect::back();
     }
 
