@@ -1,4 +1,4 @@
-<div class="bg-white m-2 rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm ">
+<div class="bg-white m-2 rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm w-full md:w-[30%] justify-center">
     <div class="relative w-full">
         <img class="w-full"  src="{{asset("storage/" . $product->image)}}" alt="Product Image">
         <div class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">SALE
