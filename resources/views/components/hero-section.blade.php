@@ -1,8 +1,6 @@
 <div class="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden">
     <div class="container mx-auto px-6 flex relative py-16">
-        <div class="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
-            <span class="w-20 h-2 bg-gray-800 dark:bg-white mb-12">
-            </span>
+        <div class="sm:w-2/3 lg:w-2/5 flex flex-col pl-10 relative z-20">
             <h1 class="font-bebas-neue uppercase text-6xl sm:text-8xl font-black flex flex-col leading-none dark:text-white text-gray-800">
                 Be on
                 <span class="text-5xl sm:text-7xl">
@@ -22,7 +20,7 @@
             </div>
         </div>
         <div class="hidden sm:block sm:w-1/3 lg:w-3/5 relative">
-            <img src="https://www.tailwind-kit.com/images/object/10.png" class="max-w-xs md:max-w-sm m-auto"/>
+            <img src="https://www.tailwind-kit.com/images/object/10.png" class="max-w-xs m-auto"/>
         </div>
     </div>
 </div>

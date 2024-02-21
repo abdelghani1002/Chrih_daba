@@ -1,6 +1,6 @@
 <x-app-layout title="Login">
-<div class="flex h-screen items-center justify-center p-10">
-    <div class="xl:w-1/2  rounded-2xl border border-blue-800 md:shadow-xl">
+<div class="flex h-screen items-center justify-center">
+    <div class="xl:w-1/2 -mt-24 rounded-2xl border border-blue-800 md:shadow-xl">
       <div class="grid md:grid-cols-2 p-5">
         <div class="">
           <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-10299071-8333958.png?f=webp" alt="" />

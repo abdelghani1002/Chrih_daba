@@ -17,7 +17,7 @@
     @if (session('success'))
         <div id="alert_success" class="w-full p-2 text-center bg-green-200 text-green-700">{{ session('success') }}</div>
     @endif
-    <main class="dark:bg-gray-800 bg-white relative  h-screen">
+    <main class="dark:bg-gray-800 bg-white relative h-screen">
         <x-header-user-pages />
 
 
@@ -27,14 +27,13 @@
             </div>
         @endauth
 
-        <div>
+        <div class="dark:bg-slate-800">
             @if (request()->routeIs("home"))
                    <x-hero-section />
-                    <div class="my-2 lg:mx-24 mx-2">
+                    <div class="m-2 lg:mx-24 dark:bg-slate-800">
                         <x-search :categories="$categories" />
                     </div>
             @endif
-
             {{ $slot }}
         </div>
         <x-footer />
