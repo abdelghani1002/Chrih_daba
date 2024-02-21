@@ -10,7 +10,7 @@
         <span class="text-lg font-medium mb-2 bg-red-200 py-1 px-2 rounded-md ">{{ $product->category->name }}</span>
         <div class="flex items-center mt-4 justify-between">
             <span class="font-bold text-lg">${{  $product->price }}</span>
-            <a href="{{route("product.show", $product)}}" class="bg-red-100 px-2 py-1 rounded-sm " >show</a>
+            <a href="{{ route("product.show", $product) }}" class="bg-red-100 px-2 py-1 rounded-sm " >show</a>
             <form method="post" action="{{ url('product/addtocart') }}">
                 @csrf
                  <input name="product_id" value="{{$product->id}}" type="hidden">

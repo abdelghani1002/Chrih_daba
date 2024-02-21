@@ -1,7 +1,11 @@
+$(document).ready(function () {
+    // alert
+    setTimeout(() => {
+        $("#alert_success").hide();
+    }, 3000);
 
-$(document).ready(function() {
     var itsOpen = false;
-    $("#cartbtn").click(function(e) {
+    $("#cartbtn").click(function (e) {
 
         if (itsOpen) {
             var itsOpen = false;
@@ -27,35 +31,37 @@ $(document).ready(function() {
         }).toString();
 
         fetch('/search?' + params, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': token
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.status) {
-                console.log(data);
-                showProduct(data.products, data.token);
-            }else noResult();
-        })
-        .catch(error => {
-            console.error('Fetch Error:', error);
-        });
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status) {
+                    console.log(data);
+                    showProduct(data.products, data.token);
+                } else noResult();
+            })
+            .catch(error => {
+                console.error('Fetch Error:', error);
+            });
     }
-   function noResult(){
-    $("#place_result").html("")
-   }
-    function showProduct(products,token){
+
+    function noResult() {
+        $("#place_result").html("")
+    }
+
+    function showProduct(products, token) {
         $("#place_result").html("")
         products.forEach(product => {
-            var description =limitString(product.description, 80)
+            var description = limitString(product.description, 80)
             $("#place_result").append(`
             <div class="bg-white m-2 rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm ">
     <div class="relative w-full">
@@ -85,6 +91,7 @@ $(document).ready(function() {
             `);
         });
     }
+
     function limitString(str, maxLength, suffix = '...') {
         if (str.length <= maxLength) {
             return str;

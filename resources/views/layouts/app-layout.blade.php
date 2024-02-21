@@ -14,27 +14,30 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <div id="alert_success" class="w-full p-2 text-center bg-green-200 text-green-700">{{ session('success') }}</div>
+    @endif
     <main class="dark:bg-gray-800 bg-white relative  h-screen">
-        <x-header-user-pages  />
+        <x-header-user-pages />
 
 
         @auth
             <div id="cart" class="hidden z-50 top-24 right-0 lg:pr-24 pr-2 ">
-                <x-cart   />
+                <x-cart />
             </div>
         @endauth
 
         <div>
-                    <x-hero-section />
+            <x-hero-section />
             <div class="my-2 lg:mx-24 mx-2">
-                <x-search :categories="$categories"  />
+                <x-search :categories="$categories" />
             </div>
             {{ $slot }}
         </div>
         <x-footer />
     </main>
 
-     <script src="{{asset("assets/js/app.js")}}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
 </body>
 
