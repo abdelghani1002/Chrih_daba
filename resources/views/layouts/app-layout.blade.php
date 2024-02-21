@@ -4,16 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>{{ $title }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <main class="dark:bg-gray-800 bg-white relative  h-screen">
-        <x-header-user-pages />
+        <x-header-user-pages  />
 
 
         @auth
@@ -23,26 +25,16 @@
         @endauth
 
         <div>
+                    <x-hero-section />
+            <div class="my-2 lg:mx-24 mx-2">
+                <x-search :categories="$categories"  />
+            </div>
             {{ $slot }}
         </div>
         <x-footer />
     </main>
-    <script>
-        $(document).ready(function() {
-            var itsOpen = false;
-            $("#cartbtn").click(function(e) {
 
-                if (itsOpen) {
-                    var itsOpen = false;
-
-                    $("#cart").toggleClass("absolute").toggleClass("hidden");
-                } else {
-                    itsOpen = true;
-                    $("#cart").toggleClass("hidden").toggleClass("absolute");
-                }
-            });
-        });
-    </script>
+     <script src="{{asset("assets/js/app.js")}}"></script>
 
 </body>
 

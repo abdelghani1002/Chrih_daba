@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Category;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
@@ -12,7 +13,7 @@ class AppLayout extends Component
      *
      * @return void
      */
-    public function __construct( public string $title)
+    public function __construct( public string $title , public Collection $categories)
     {
         //
 
@@ -25,6 +26,7 @@ class AppLayout extends Component
      */
     public function render()
     {
-        return view('layouts.app-layout');
+         $this->categories = Category::all();
+        return view('layouts.app-layout',["categories"=>$this->categories]);
     }
 }
