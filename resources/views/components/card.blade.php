@@ -21,17 +21,17 @@
                     add to cart
                 </button>
             </form>
-            @if (!request()->routeIs('home'))
-                <form method="post" action=" {{ url('product/removeFromCart') }}">
-                    @csrf
-                    <input name="product_id" value="{{ $product->id }}" type="hidden">
-                    <button class="bg-red-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                        remove from favourite
-                    </button>
-                </form>
-            @endif
 
 
         </div>
     </div>
+    @if (!request()->routeIs('home'))
+        <form method="post" action=" {{ url('product/removeFromCart') }}">
+            @csrf
+            <input name="product_id" value="{{ $product->id }}" type="hidden">
+            <button class="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">
+                remove from favourites
+            </button>
+        </form>
+    @endif
 </a>
