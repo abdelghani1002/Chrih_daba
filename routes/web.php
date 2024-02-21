@@ -5,7 +5,7 @@ use App\Http\Controllers\SiteController;
 use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,21 +18,22 @@ use App\Http\Controllers\SearchController;
 |
 */
 
-Route::get('/', [SiteController::class,"index"] );
-Route::get('/login', [SiteController::class,"login"] )->name("login");
-Route::get('/register', [SiteController::class,"register"] );
-Route::get('/product/{product}', [SiteController::class,"singlePage"] )->name('product.show');
+Route::get('/', [SiteController::class, "index"]);
+Route::get('/login', [SiteController::class, "login"])->name("login");
+Route::get('/register', [SiteController::class, "register"]);
+Route::get('/product/{product}', [SiteController::class, "singlePage"])->name('product.show');
 
-Route::post('/register', [RegisteredUserController::class,"store"] );
-
-Route::get('/search', [SearchController::class,"search"] );
+Route::post('/register', [RegisteredUserController::class, "store"]);
 
 
-Route::middleware("auth")->group(function(){
-    Route::post('/logout', [RegisteredUserController::class,"logOut"] );
-    Route::post("product/addtocart",[CartController::class,"addProducttoCart"]);
-    Route::delete("/removeFromCart",[CartController::class,"removeFromCart"]);
-
+Route::middleware("auth")->group(function () {
+    Route::post('/logout', [RegisteredUserController::class, "logOut"]);
+    Route::post("product/addtocart", [CartController::class, "addProducttoCart"]);
+    Route::delete("/removeFromCart", [CartController::class, "removeFromCart"]);
+    Route::post("/checkout", [OrderController::class, "checkout"])->name("checkout");
+    //mollie
+    Route::get('success', [OrderController::class, 'success'])->name('success');
+    Route::get('cancel', [OrderController::class, 'cancel'])->name('cancel');
 });
 
 
