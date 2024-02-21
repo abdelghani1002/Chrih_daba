@@ -36,9 +36,12 @@ class SiteController extends Controller
             ");
             $Favorites_Categories_Ids_from_favorites = array_column($res, 'id');
             $fin_res = array_unique(array_merge($Favorites_Categories_Ids_from_orders, $Favorites_Categories_Ids_from_favorites));
-            $products = Product::whereIn("category_id", $fin_res)->paginate(5);
-        }else{
-            $products = Product::all();
+            if (count($fin_res) == 0)
+                $products = Product::paginate(5);
+            else
+                $products = Product::whereIn("category_id", $fin_res)->paginate(5);
+        } else {
+            $products = Product::paginate(5);
         }
         // dd($products);
         return view("welcome", compact('products'));
