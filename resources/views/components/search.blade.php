@@ -1,6 +1,6 @@
 <form class="flex flex-col md:flex-row gap-3">
     <div class="flex w-full ">
-        <input id="search_input" type="text" placeholder="Search for the tool you like"
+        <input id="search_input" type="text" placeholder="Search for the product you like"
 			class="w-full   px-3 h-10 rounded-l border-2 border-red-500 focus:outline-none focus:border-red-500"
 			>
         <button type="submit" class="bg-red-500 text-white rounded-r px-2 md:px-3 py-0 md:py-1">Search</button>

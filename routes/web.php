@@ -6,7 +6,7 @@ use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +25,7 @@ Route::get('/product/{product}', [SiteController::class, "singlePage"])->name('p
 
 Route::post('/register', [RegisteredUserController::class, "store"]);
 
+Route::get('/search', [SearchController::class,"search"] );
 
 Route::middleware("auth")->group(function () {
     Route::post('/logout', [RegisteredUserController::class, "logOut"]);
