@@ -53,4 +53,8 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->belongsToMany(Product::class,'carts');
     }
+    public function favouriteProducts()
+    {
+        return $this->belongsToMany(Product::class,'favourites');
+    }
 }

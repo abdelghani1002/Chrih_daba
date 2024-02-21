@@ -12,9 +12,11 @@
                              <input name="product_id" value="{{$product->id}}" type="hidden">
                             <button class="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Add to Cart</button>
                         </form>
-                        <div class="w-1/2 px-2">
+                        <form method="post" action="{{ url('product/addtoFavourite') }}" class="w-1/2 px-2">
+                            @csrf
+                            <input name="product_id" value="{{$product->id}}" type="hidden">
                             <button class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600">Add to Wishlist</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="md:flex-1 px-4">

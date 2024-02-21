@@ -18,10 +18,12 @@ use App\Http\Controllers\SearchController;
 |
 */
 
-Route::get('/', [SiteController::class, "index"]);
+Route::get('/', [SiteController::class, "index"])->name("home");
 Route::get('/login', [SiteController::class, "login"])->name("login");
 Route::get('/register', [SiteController::class, "register"]);
 Route::get('/product/{product}', [SiteController::class, "singlePage"])->name('product.show');
+Route::get('/myProfil', [SiteController::class, "myProfil"]);
+
 
 Route::post('/register', [RegisteredUserController::class, "store"]);
 
@@ -30,9 +32,9 @@ Route::get('/search', [SearchController::class,"search"] );
 Route::middleware("auth")->group(function () {
     Route::post('/logout', [RegisteredUserController::class, "logOut"]);
     Route::post("product/addtocart", [CartController::class, "addProducttoCart"]);
+    Route::post("product/addtoFavourite", [SiteController::class, "addProducttoCart"]);
     Route::delete("/removeFromCart", [CartController::class, "removeFromCart"]);
     Route::post("/checkout", [OrderController::class, "checkout"])->name("checkout");
-    //mollie
     Route::get('success', [OrderController::class, 'success'])->name('success');
     Route::get('cancel', [OrderController::class, 'cancel'])->name('cancel');
 });

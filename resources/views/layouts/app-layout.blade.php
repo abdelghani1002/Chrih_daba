@@ -28,10 +28,13 @@
         @endauth
 
         <div>
-            <x-hero-section />
-            <div class="my-2 lg:mx-24 mx-2">
-                <x-search :categories="$categories" />
-            </div>
+            @if (request()->routeIs("home"))
+                   <x-hero-section />
+                    <div class="my-2 lg:mx-24 mx-2">
+                        <x-search :categories="$categories" />
+                    </div>
+            @endif
+
             {{ $slot }}
         </div>
         <x-footer />
