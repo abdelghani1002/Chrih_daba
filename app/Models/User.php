@@ -55,6 +55,6 @@ class User extends \TCG\Voyager\Models\User
     }
     public function favouriteProducts()
     {
-        return $this->belongsToMany(Product::class,'favourites');
+        return $this->belongsToMany(Product::class,'favorites');
     }
 }

@@ -4,4 +4,7 @@
             <x-card :product="$product" />
         @endforeach
     </div>
+    <div class="p-5">
+        {{ $products->OnEachSide(1)->links() }}
+    </div>
 </x-app-layout>

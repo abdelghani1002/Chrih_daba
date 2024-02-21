@@ -1,4 +1,4 @@
-<footer class="bg-gray-800 text-white py-12">
+<footer class="bg-gray-800 text-white p-12">
     <div class="container mx-auto flex flex-wrap justify-between items-center">
         <div class="w-full md:w-1/2 mb-4 md:mb-0">
             <h2 class="text-2xl font-bold"><x-app-logo/></h2>

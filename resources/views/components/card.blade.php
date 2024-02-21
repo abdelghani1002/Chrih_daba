@@ -11,7 +11,7 @@
         <div class="flex items-center mt-4 justify-between">
             <span class="font-bold text-lg">${{  $product->price }}</span>
             <a href="{{ route("product.show", $product) }}" class="bg-red-100 px-2 py-1 rounded-sm " >show</a>
-            @if (request()->routeIs("home"))
+
                  <form method="post" action=" {{ url('product/addtocart') }}">
                     @csrf
                     <input name="product_id" value="{{$product->id}}" type="hidden">
@@ -19,7 +19,7 @@
                         add to cart
                     </button>
                 </form>
-            @else
+              @if (!request()->routeIs("home"))
                     <form method="post" action=" {{ url('product/removeFromCart') }}">
                         @csrf
                         <input name="product_id" value="{{$product->id}}" type="hidden">
