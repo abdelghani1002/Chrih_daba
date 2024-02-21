@@ -1,6 +1,6 @@
-<x-app-layout title="{{ auth()->user()->name }}">
+<x-app-layout title="{{ $user->name }}">
     <div
-        class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
+        class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto m-16 bg-white shadow-xl rounded-lg text-gray-900">
         <div class="rounded-t-lg h-32 overflow-hidden">
             <img class="object-cover object-top w-full"
                 src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
@@ -8,11 +8,11 @@
         </div>
         <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
             <img class="object-cover object-center h-32"
-                src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
-                alt='Woman looking front'>
+                src={{ asset("storage/" . $user->avatar) }}
+                alt='user photo'>
         </div>
         <div class="text-center mt-2">
-            <h2 class="font-semibold">Sarah Smith</h2>
+            <h2 class="font-semibold">{{ $user->name }}</h2>
             <p class="text-gray-500">Freelance Web Designer</p>
         </div>
         <ul class="py-4 mt-2 text-gray-700 flex items-center justify-around">
@@ -38,21 +38,31 @@
                 <div>15</div>
             </li>
         </ul>
-        <div class="p-4 border-t mx-8 mt-2">
-            <button
-                class="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Follow</button>
-        </div>
     </div>
 
     @unless ($favProduct->count() == 0)
     <div class="px-10">
-        <div class="text-center pt-24 ">
-            <h3 class="text-3xl font-bold">Favourite Production</h3>
+        <div class="">
+            <h3 class="text-3xl font-bold dark:text-gray-300">Favorite Products</h3>
         </div>
         <div id="place_result"
             class="flex flex-wrap lg:px-32 px-8 gap-2 lg:justify-start md:justify-center pb-10 pt-2 justify-center w-full">
             @foreach ($favProduct as $product)
                 <x-card :product="$product" />
+            @endforeach
+        </div>
+    </div>
+    @endunless
+
+    @unless ($user->orders->count() == 0)
+    <div class="p-10">
+        <div class="">
+            <h3 class="text-3xl font-bold dark:text-gray-300">My Orders</h3>
+        </div>
+        <div id="place_result"
+            class="flex flex-wrap lg:px-32 px-8 gap-2 lg:justify-start md:justify-center pb-10 pt-2 justify-center w-full">
+            @foreach ($user->orders as $order)
+                {{ $order }} 
             @endforeach
         </div>
     </div>

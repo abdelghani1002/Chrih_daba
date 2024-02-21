@@ -46,19 +46,22 @@ class SiteController extends Controller
         // dd($products);
         return view("welcome", compact('products'));
     }
+
     function singlePage(Product $product)
     {
         return view("single-page-product", compact('product'));
     }
+
     function productSinglePage(int $id)
     {
-
         return view("single-page-product");
     }
+
     function login()
     {
         return view("login");
     }
+
     function register()
     {
         return view("register");
@@ -66,23 +69,21 @@ class SiteController extends Controller
 
     function myProfil()
     {
-        $favProduct = User::find(auth()->id());
-        $favProduct = $favProduct->favouriteProducts;
-        return view("profile", compact("favProduct"));
+        $user = auth()->user();
+        $favProduct = $user->favouriteProducts;
+        return view("profile", compact("favProduct", "user"));
     }
 
     function addProducttoCart(Request $request)
     {
         $user = Auth::user();
         $productId = $request->input('product_id');
-
-
         if (!$user->favouriteProducts->contains($productId)) {
             $user->favouriteProducts()->syncWithoutDetaching([$productId]);
         }
-
         return Redirect::back();
     }
+
     function removeFromCart(Request $request)
     {
         $user = Auth::user();
