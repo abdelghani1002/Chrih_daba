@@ -19,7 +19,7 @@
             <a href="#" class="py-2 px-6 flex">
                 <form method="post" action="{{ url('/logout') }}">
                     @csrf
-                    <button class="px-2 py-1 border rounded-md" type="submit">LOUGOUT</button>
+                    <button class="px-2 py-1 border rounded-md" type="submit">LOGOUT</button>
                 </form>
             </a>
             <span id="cartbtn" class="w-8 h-8  cursor-pointer "><svg xmlns="http://www.w3.org/2000/svg" fill="none"

@@ -81,13 +81,13 @@ class SiteController extends Controller
             $user->favouriteProducts()->syncWithoutDetaching([$productId]);
         }
 
-        return Redirect::back();
+        return Redirect::back()->with('success', " added to favourites successfully");
     }
     function removeFromCart(Request $request)
     {
         $user = Auth::user();
         $productId = $request->input('product_id');
         $user->favouriteProducts()->detach([$productId]);
-        return Redirect::back();
+        return Redirect::back()->with('success', " deleted successfully");
     }
 }

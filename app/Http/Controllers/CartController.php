@@ -21,13 +21,13 @@ class CartController extends Controller
             $user->products()->syncWithoutDetaching([$productId]);
         }
 
-        return Redirect::back();
+        return Redirect::back()->with('success', " added to cart successfully");
     }
     function removeFromCart(Request $request){
         $user = Auth::user();
         $productId = $request->input('product_id');
         $user->products()->detach([$productId]);
-        return Redirect::back();
+        return Redirect::back()->with('success', "product removed from cart successfully");
 
     }
 
