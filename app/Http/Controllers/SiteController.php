@@ -52,11 +52,6 @@ class SiteController extends Controller
         return view("single-page-product", compact('product'));
     }
 
-    function productSinglePage(int $id)
-    {
-        return view("single-page-product");
-    }
-
     function login()
     {
         return view("login");

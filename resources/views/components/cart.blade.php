@@ -32,14 +32,16 @@
                 <span class="font-bold text-lg">Total:</span>
                 <span class="font-bold text-lg">{{ $amount }} $</span>
             </div>
-            <form method="POST" action="{{ route('checkout') }}">
-                @csrf
-                @method('POST')
-                <input type="hidden" name="products_ids[]" value="{{ $cart->pluck('id') }}">
-                <button class="block w-full mt-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                    Checkout
-                </button>
-            </form>
+            @unless ($cart->count() == 0)
+                <form method="POST" action="{{ route('checkout') }}">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="products_ids[]" value="{{ $cart->pluck('id') }}">
+                    <button class="block w-full mt-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                        Checkout
+                    </button>
+                </form>
+            @endunless
         </div>
     </div>
 </div>

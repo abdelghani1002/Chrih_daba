@@ -144,7 +144,11 @@ return [
         ],
 
         'widgets' => [
-
+            \TCG\Voyager\Widgets\UserDimmer::class,
+            \App\Widgets\ProductDimmer::class,
+            \App\Widgets\OrderDimmer::class,
+            \App\Widgets\CategoryDimmer::class,
+            \App\Widgets\EntriesDimmer::class,
         ],
 
     ],
