@@ -14,15 +14,19 @@ class OrderController extends Controller
 {
     function checkout(Request $request)
     {
+        $back_url = $request->header('referer');
         $user = auth()->user();
         $products_ids = json_decode($request->products_ids[0]);
-        $order = Order::create([
-            'status' => "unpaid",
-            'user_id' => auth()->id()
-        ]);
-        $order->products()->attach($products_ids);
+        if($request->has("order_id")){
+            $order = Order::find($request->order_id);
+        }else{
+            $order = Order::create([
+                'status' => "unpaid",
+                'user_id' => auth()->id()
+            ]);
+            $order->products()->attach($products_ids);
+        }
         $total = $order->products->sum('price');
-        // dd($total);
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => "USD",
@@ -33,6 +37,7 @@ class OrderController extends Controller
         ]);
         session()->put('paymentId', $payment->id);
         session()->put('orderId', $order->id);
+        session()->put('back_url', $back_url);
         $user->products()->detach($products_ids);
         // redirect customer to Mollie checkout page
         return redirect($payment->getCheckoutUrl(), 303);
@@ -41,6 +46,7 @@ class OrderController extends Controller
     public function success(Request $request)
     {
         $paymentId = session()->get('paymentId');
+        $back_url = session()->get('back_url');
         $payment = Mollie::api()->payments->get($paymentId);
         if($payment->isPaid())
         {
@@ -60,7 +66,7 @@ class OrderController extends Controller
             $order->update(["status" => "paid"]);
             session()->forget('paymentId');
             session()->forget('orderId');
-            return redirect("/")->with("success", "Your payment is done with success");
+            return redirect($back_url)->with("success", "Your payment is done with success");
         } else {
             return redirect()->route('cancel');
         }
