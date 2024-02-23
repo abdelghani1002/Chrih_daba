@@ -27,23 +27,22 @@ class SiteController extends Controller
                             ORDER BY count_products DESC");
             $Favorites_Categories_Ids_from_orders = array_column($res, 'id');
             $res = DB::select("
-                    SELECT products.category_id as id , COUNT(products.id) as count_products FROM
-                    users INNER JOIN favorites INNER JOIN products ON
-                    users.id = favorites.user_id and favorites.product_id = products.id
-                    WHERE users.id = $id
-                    GROUP BY products.category_id
-                    ORDER BY count_products DESC
-            ");
+                            SELECT products.category_id as id , COUNT(products.id) as count_products FROM
+                            users INNER JOIN favorites INNER JOIN products ON
+                            users.id = favorites.user_id and favorites.product_id = products.id
+                            WHERE users.id = $id
+                            GROUP BY products.category_id
+                            ORDER BY count_products DESC");
+
             $Favorites_Categories_Ids_from_favorites = array_column($res, 'id');
             $fin_res = array_unique(array_merge($Favorites_Categories_Ids_from_orders, $Favorites_Categories_Ids_from_favorites));
             if (count($fin_res) == 0)
-                $products = Product::paginate(5);
+                $products = Product::paginate(6);
             else
-                $products = Product::whereIn("category_id", $fin_res)->paginate(5);
+                $products = Product::whereIn("category_id", $fin_res)->paginate(6);
         } else {
-            $products = Product::paginate(5);
+            $products = Product::paginate(6);
         }
-        // dd($products);
         return view("welcome", compact('products'));
     }
 
@@ -77,7 +76,7 @@ class SiteController extends Controller
             $user->favouriteProducts()->syncWithoutDetaching([$productId]);
         }
 
-        return Redirect::back()->with('success', " added to favourites successfully");
+        return Redirect::back()->with('success', "added to favourites successfully");
     }
 
     function removeFromCart(Request $request)
@@ -85,6 +84,6 @@ class SiteController extends Controller
         $user = Auth::user();
         $productId = $request->input('product_id');
         $user->favouriteProducts()->detach([$productId]);
-        return Redirect::back()->with('success', " deleted successfully");
+        return Redirect::back()->with('success', "Product removed successfully");
     }
 }

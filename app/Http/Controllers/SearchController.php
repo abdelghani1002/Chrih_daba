@@ -28,7 +28,6 @@ class SearchController extends Controller
             ]);
         } else  return response()->json([
             "status" => false
-
         ]);
     }
 }
